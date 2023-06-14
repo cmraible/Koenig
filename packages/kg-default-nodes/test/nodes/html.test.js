@@ -126,11 +126,13 @@ describe('HtmlNode', function () {
             const {element, type} = htmlNode.exportDOM(exportOptions);
             type.should.equal('value');
             element.value.should.prettifyTo(html`
+                <!--kg-card-begin: html-->
                 <p>Paragraph with:</p>
                 <ul>
                     <li>list</li>
                     <li>items</li>
                 </ul>
+                <!--kg-card-end: html-->
             `);
         }));
 
@@ -148,7 +150,7 @@ describe('HtmlNode', function () {
             type.should.equal('value');
 
             // do not prettify, it will add a closing tag to the compared string causing a false pass
-            element.value.should.equal('<div style="color:red">');
+            element.value.should.equal('<!--kg-card-begin: html--><div style="color:red"><!--kg-card-end: html-->');
         }));
     });
 

@@ -5,11 +5,13 @@ export function renderHtmlNode(node, options = {}) {
     addCreateDocumentOption(options);
     const document = options.createDocument();
 
-    const html = node.html;
+    let html = node.html;
 
     if (!html) {
         return renderEmptyContainer(document);
     }
+
+    html = '<!--kg-card-begin: html-->' + html + '<!--kg-card-end: html-->';
 
     const textarea = document.createElement('textarea');
     textarea.innerHTML = html;
