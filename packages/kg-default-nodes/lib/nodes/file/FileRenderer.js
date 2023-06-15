@@ -110,7 +110,7 @@ function cardTemplate(node, document) {
 
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('viewBox', '0 0 24 24');
-
+    svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
     const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
 
     const style = document.createElementNS('http://www.w3.org/2000/svg', 'style');
