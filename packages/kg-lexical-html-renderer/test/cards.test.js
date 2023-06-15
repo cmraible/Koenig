@@ -109,9 +109,13 @@ describe('Cards', function () {
         const output = Prettier.format(renderer.render(JSON.stringify(lexicalState), options), {parser: 'html'});
 
         const expected =
-`<div style="color: red">
+`<!--kg-card-begin: html-->
+<div style="color: red">
+  <!--kg-card-end: html-->
   <p>Testing</p>
+  <!--kg-card-begin: html-->
 </div>
+<!--kg-card-end: html-->
 `;
         output.should.equal(expected);
     });
