@@ -19,6 +19,14 @@ export function renderAudioNode(node, options = {}) {
     }
 }
 
+function formatDuration(rawDuration) {
+    const minutes = Math.floor(rawDuration / 60);
+    const seconds = Math.floor(rawDuration - (minutes * 60));
+    const returnedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+    const formattedDuration = `${minutes}:${returnedSeconds}`;
+    return formattedDuration;
+}
+
 function frontendTemplate(node, document, thumbnailCls, emptyThumbnailCls) {
     const element = document.createElement('div');
     element.setAttribute('class', 'kg-card kg-audio-card');
@@ -114,7 +122,7 @@ function frontendTemplate(node, document, thumbnailCls, emptyThumbnailCls) {
     audioDurationTotal.textContent = '/';
     const audioDUrationNode = document.createElement('span');
     audioDUrationNode.setAttribute('class', 'kg-audio-duration');
-    audioDUrationNode.textContent = node.duration;
+    audioDUrationNode.textContent = formatDuration(node.duration);
     audioDurationTotal.appendChild(audioDUrationNode);
     audioPlayer.appendChild(audioDurationTotal);
 
