@@ -1,6 +1,13 @@
 import {addCreateDocumentOption} from '../../utils/add-create-document-option';
 import {renderEmptyContainer} from '../../utils/render-empty-container';
-import {slugify} from '@tryghost/kg-utils';
+function slugify(str) {
+    return encodeURIComponent(str.trim()
+        .toLowerCase()
+        .replace(/[\][!"#$%&'()*+,./:;<=>?@\\^_{|}~]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/^-|-{2,}|-$/g, '')
+    );
+}
 
 export function renderHeaderNode(node, options = {}) {
     addCreateDocumentOption(options);
