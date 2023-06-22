@@ -325,7 +325,7 @@ function convertCardSectionToLexical(child, mobiledoc) {
             delete payload[oldName];
         }
     }
-
+    delete payload.type;
     const decoratorNode = {type: cardName, ...payload};
 
     return decoratorNode;
