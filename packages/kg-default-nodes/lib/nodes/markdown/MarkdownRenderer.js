@@ -8,8 +8,8 @@ export function renderMarkdownNode(node, options = {}) {
     const html = markdownHtmlRenderer.render(node.markdown || '', options);
 
     const element = document.createElement('div');
-    element.innerHTML = html;
-
+    element.innerHTML = '<!--kg-card-begin: markdown-->' + html + '<!--kg-card-end: markdown-->';
+    
     // `type: 'inner'` will render only the innerHTML of the element
     // @see @tryghost/kg-lexical-html-renderer package
     return {element, type: 'inner'};

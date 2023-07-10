@@ -117,11 +117,13 @@ describe('MarkdownNode', function () {
             const {element, type} = markdownNode.exportDOM(exportOptions);
             type.should.equal('inner');
             element.innerHTML.should.prettifyTo(html`
+                <!--kg-card-begin: markdown-->
                 <h1 id="heading">HEADING</h1>
                 <ul>
                 <li>list</li>
                 <li>items</li>
                 </ul>
+                <!--kg-card-end: markdown-->
             `);
         }));
 
@@ -129,7 +131,7 @@ describe('MarkdownNode', function () {
             const markdownNode = $createMarkdownNode();
             const {element} = markdownNode.exportDOM(exportOptions);
 
-            element.outerHTML.should.equal('<div></div>');
+            element.outerHTML.should.equal('<div><!--kg-card-begin: markdown--><!--kg-card-end: markdown--></div>');
         }));
     });
 
