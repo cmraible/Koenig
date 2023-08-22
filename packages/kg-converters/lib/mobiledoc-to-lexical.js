@@ -208,7 +208,7 @@ function populateLexicalNodeWithMarkers(lexicalNode, markers, mobiledoc) {
             openMarkups.push(markup);
         });
 
-        if (value) {
+        if (value !== undefined) {
             // Convert the open markups to a bitmask compatible with Lexical
             const format = convertMarkupTagsToLexicalFormatBitmask(openMarkups);
 
@@ -235,13 +235,13 @@ function populateLexicalNodeWithMarkers(lexicalNode, markers, mobiledoc) {
 
             // If we're closing a link tag, add the linkNode to the node
             // Reset href and linkNode for the next markup
-            if (markup[0] === 'a') {
+            if (markup && markup[0] === 'a') {
                 embedChildNode(lexicalNode, linkNode);
                 href = undefined;
                 linkNode = undefined;
             }
         }
-    }
+    } // end for loop
 }
 
 // Creates a text node from the given text and format
@@ -274,11 +274,15 @@ function createEmptyLexicalNode(tagName, attributes = {}) {
 
 // Adds a child node to a parent node
 function embedChildNode(parentNode, childNode) {
+    // If there is no child node, do nothing
+    if (!childNode) {
+        return;
+    }
     // Add textNode to node's children
     parentNode.children.push(childNode);
 
     // If there is any text (e.g. not a blank text node), set the direction to ltr
-    if ('text' in childNode && childNode.text) {
+    if (childNode && 'text' in childNode && childNode.text) {
         parentNode.direction = 'ltr';
     }
 }
